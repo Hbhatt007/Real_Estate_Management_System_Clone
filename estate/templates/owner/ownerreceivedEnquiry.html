@@ -1,0 +1,68 @@
+{% extends 'ownerNavbar.html' %}
+{% block main  %}
+{% load static %}
+
+<!-- ======= Manage Property ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">Received Enquiry</h1>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'ownerDashboard' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            My Account
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Received Enquiry
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+
+<section class="property-grid grid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="form--title">Total Received Enquiry</h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>S.NO</th>
+                        <th>Enquiry Number</th>
+                        <th>Full Name</th>
+                        <th>Mobile Number</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    {% for i in propenquiry %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.enquiryno}}</td>
+                        <td>{{i.fullname}}</td>
+                        <td>{{i.mobileno}}</td>
+                        <td><a href="{% url 'viewEnquiry' i.id %}">View Details</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <th colspan="5" style="text-align: center; color:red">No Record found</th>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'adminNavbar.html' %}
+{% block main  %}
+{% load static %}
+
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+
+            <!-- Left side columns -->
+            <div class="col-lg-12">
+                <div class="row">
+
+                    <!-- Property Card -->
+                    <div class="col-xxl-3 col-md-6">
+                    <a href="{% url 'manageProperty' %}">
+                        <div class="card info-card sales-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Property Type </h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-cart"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{allproperty}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div><!-- End Sales Card -->
+
+                    <!-- State Card -->
+                    <div class="col-xxl-3 col-md-6">
+                    <a href="{% url 'manageState' %}">
+                        <div class="card info-card revenue-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total State</h5>
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{allstate}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div><!-- End Revenue Card -->
+
+                    <!-- City Card -->
+                    <div class="col-xxl-3 col-xl-12">
+                    <a href="{% url 'manageCity' %}">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total City </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{allcity}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div><!-- End Customers Card -->
+
+                    <!-- City Card --> 
+                    <div class="col-xxl-3 col-xl-12">
+                    <a href="{% url 'ownerList' %}">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Owners Listed </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{allowner}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div><!-- End Customers Card -->
+
+                    <!-- City Card -->
+                    <div class="col-xxl-4 col-xl-12">
+                    <a href="{% url 'agentsList' %}">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Broker/Agent Listed </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{allbroker}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div><!-- End Customers Card -->
+
+                     <!-- City Card -->
+                    <div class="col-xxl-4 col-xl-12">
+                    <a href="{% url 'userList' %}">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Listed User </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{alluser}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div><!-- End Customers Card -->
+
+                     <!-- City Card -->
+                    <div class="col-xxl-4 col-xl-12">
+                    <a href="{% url 'propertyList' %}">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Properties Listed </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{allproperty}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div><!-- End Customers Card -->
+
+                </div>
+            </div><!-- End Left side columns -->
+
+        </div>
+    </section>
+{% endblock %}

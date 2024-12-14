@@ -1,0 +1,123 @@
+{% extends 'adminNavbar.html' %}
+{% block main  %}
+{% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<div class="pagetitle">
+    <h1>New Review</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="breadcrumb-item active">Review</li>
+            <li class="breadcrumb-item active">View Feedback</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Vew Feedback Details</h5>
+                    <table class="table table-bordered border-primary">
+
+                        <tr>
+                            <th>Full Name</th>
+                            <td>{{feedback.user.user.first_name}} {{feedback.user.user.last_name}}</td>
+
+                            <th>Full Name</th>
+                            <td>{{feedback.user.user.username}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Property</th>
+                            <td>{{feedback.property.propertytitle}}</td>
+
+                            <th>Review Date</th>
+                            <td>{{feedback.postingdate}}</td>
+                        </tr>
+
+                        <tr>
+                            <th>Review</th>
+                            <td colspan="3">{{feedback.userremark}}</td>
+                        </tr>
+
+                         <tr>
+                            <th>Admin Remark</th>
+                             {% if feedback.ispublish == None %}
+                                <td>Not Update Yet</td>
+                             {% else %}
+                                <td colspan="3">{{feedback.ispublish}}</td>
+                             {% endif %}
+                        </tr>
+                    </table>
+
+                    {% if feedback.ispublish == None %}
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                data-target="#assignto">Take Action
+                        </button>
+                    </div>
+                    {% endif %}
+
+                    <!-- Assign Modal -->
+                    <div id="assignto" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 align="left" class="text-success">Take Action</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <p><select class="form-control" name="ispublish" required="true">
+                                            <option value="Unapproved">Unapproved</option>
+                                            <option value="Approved">Approved</option>
+                                        </select></p>
+                                        <p>
+                                        </p>
+
+                                        <div class="modal-footer">
+                                            <input type="submit" class="btn btn-primary btn-user btn-block"
+                                                   value="Submit">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Take Action Modal -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+    alert('Your review successfully submited, after review it will publish');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong. Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}

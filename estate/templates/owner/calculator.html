@@ -1,0 +1,55 @@
+{% extends 'ownerNavbar.html' %}
+{% block main  %}
+{% load static %}
+
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <h2 align="center">Calculator</h2>
+            <hr/>
+            <table id="customers">
+                <tr>
+                    <th>Sale Price</th>
+                    <td>{{saleprice}} Rs.</td>
+                </tr>
+
+                <tr>
+                    <th>Down Payment</th>
+                    <td>{{downpayment}} Rs.</td>
+                </tr>
+
+                <tr>
+                    <th>Actual Payment</th>
+                    <td>{{actualprice}} Rs.</td>
+                </tr>
+
+                <tr>
+                    <th>Term</th>
+                    <td>{{term}} Yr.</td>
+                </tr>
+
+                <tr>
+                    <th>Interest Rate</th>
+                    <td>{{interestrate}} %</td>
+                </tr>
+
+                <tr>
+                    <th>Interest</th>
+                    <td>{{interest}} Rs.</td>
+                </tr>
+
+                <tr>
+                    <th>Actual Payment + Interest</th>
+                    <td>{{pricewithinterest}} Rs.</td>
+                </tr>
+
+                <tr>
+                    <th>EMI</th>
+                    <td>{{emi}} Rs./Month</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

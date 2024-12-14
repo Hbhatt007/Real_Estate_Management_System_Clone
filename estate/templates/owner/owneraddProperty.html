@@ -1,0 +1,483 @@
+{% extends 'ownerNavbar.html' %}
+{% block main  %}
+{% load static %}
+
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">Add Property</h1>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'index' %}">My Account</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Add Property
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+
+<!-- ======= Contact Single ======= -->
+<section class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 section-t8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="post" class="add-form" enctype="multipart/form-data" id="PropertyForm"
+                              data-city-url="{% url 'ajax_load_city' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label>Property Title : </label>
+                                        <input type="text" name="propertytitle"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label>Property Description : </label>
+                                        <textarea name="propertydescription"
+                                                  class="form-control form-control-lg form-control-a"
+                                                  required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Property Type : </label>
+                                        <select name="type" class="form-control form-control-lg form-control-a"
+                                                required>
+                                            <option value="">Select Property Type</option>
+                                            {% for i in propertyType %}
+                                            <option value="{{i.id}}">{{i.typename}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Status : </label>
+                                        <select name="status" class="form-control form-control-lg form-control-a" required>
+                                            <option value="">Select Status</option>
+                                            <option value="Sale">Sale</option>
+                                            <option value="Rent">Rent</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Location : </label>
+                                        <input type="text" name="location"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Bedrooms : </label>
+                                        <input type="text" name="bedrooms"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Bathrooms : </label>
+                                        <input type="text" name="bathrooms"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Floors : </label>
+                                        <input type="text" name="floors"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Garages : </label>
+                                        <input type="text" name="garages"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Area : </label>
+                                        <input type="text" name="area"
+                                               class="form-control form-control-lg form-control-a"
+                                               placeholder="sq. ft" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Size : </label>
+                                        <input type="text" name="size"
+                                               class="form-control form-control-lg form-control-a"
+                                               placeholder="sq. ft" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Sale/Rent Price : </label>
+                                        <input type="text" name="rentorsaleprice"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Before Sale label : </label>
+                                        <input type="text" name="beforepricelabel"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>After Sale label : </label>
+                                        <input type="text" name="afterpricelabel"
+                                               class="form-control form-control-lg form-control-a"
+                                               required>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-box">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h4 class="form--title">Property Features</h4>
+                                        </div>
+                                        <br><br>
+                                        <!-- .col-md-12 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="centercooling" id="centercooling" value="yes">
+                                                    <span>Center Cooling</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="balcony" id="balcony" value="yes">
+                                                    <span>Balcony</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="petfriendly" id="petfriendly"
+                                                           value="yes">
+                                                    <span>Pet Friendly</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="barbeque" id="barbeque" value="yes">
+                                                    <span>Barbeque</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="firealarm" id="firealarm" value="yes">
+                                                    <span>Fire Alarm</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="modernkitchen" id="modernkitchen"
+                                                           value="yes">
+                                                    <span>Modern Kitchen</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="storage" id="storage" value="yes">
+                                                    <span>Storage</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="dryer" id="dryer" value="yes">
+                                                    <span>Dryer</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="heating" id="heating" value="yes">
+                                                    <span>Heating</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="pool" id="pool" value="yes">
+                                                    <span>Pool</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="laundry" id="laundry" value="yes">
+                                                    <span>Laundry</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="sauna" id="sauna" value="yes">
+                                                    <span>Sauna</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="gym" id="gym" value="yes">
+                                                    <span>Gym</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="elevator" id="elevator" value="yes">
+                                                    <span>Elevator</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="dishwasher" id="dishwasher"
+                                                           value="yes">
+                                                    <span>Dish Washer</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- .col-md-3 end -->
+                                        <div class="col-xs-12 col-sm-6 col-md-3">
+                                            <div class="input-checkbox">
+                                                <label class="label-checkbox">
+                                                    <input type="checkbox" name="emergencyexit" id="emergencyexit"
+                                                           value="yes">
+                                                    <span>Emergency Exit</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-box mt-5">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h4 class="form--title">Property Gallary</h4>
+                                        </div>
+                                        <br><br>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Feature Image : </label>
+                                                <input type="file" name="featuredimage"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Gallary Image1 : </label>
+                                                <input type="file" name="galleryimage1"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Gallary Image2 : </label>
+                                                <input type="file" name="galleryimage2"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Gallary Image3 : </label>
+                                                <input type="file" name="galleryimage3"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Gallary Image4 : </label>
+                                                <input type="file" name="galleryimage4"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Gallary Image5 : </label>
+                                                <input type="file" name="galleryimage5"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-box mt-5">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <h4 class="form--title">Property Location</h4>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Address :</label>
+                                                <input type="text" name="address"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>State : </label>
+                                                <select name="state" id="state" class="form-control form-control-lg form-control-a" required>
+                                                    <option value="">Select State</option>
+                                                    {% for i in state %}
+                                                        <option value="{{i.id}}">{{i.statename}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>City : </label>
+                                                <select name="city" id="city" class="form-control form-control-lg form-control-a" required>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Zip/Postal Code : </label>
+                                                <input type="text" name="zipcode"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 mb-3">
+                                            <div class="form-group">
+                                                <label>Neighborhood : </label>
+                                                <input type="text" name="neighborhood"
+                                                       class="form-control form-control-lg form-control-a" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-a">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Contact Single-->
+
+<script>
+    $('#state').change(function(){
+    var url = $('#PropertyForm').attr("data-city-url"); //get the url of the 'load_category' view
+    var stateId = $(this).val(); //get the selected categoryid from the html input
+
+    $.ajax({    //initialize an AJAX request
+    url:url,    //set the url of the request(localhost:8000/load_subcategory)
+    data:{
+    'state':stateId //add the categoryid to the get parameters
+    },
+    success:function(data){//data is the return of the 'load_subcategory' view function
+    $('#city').html(data);
+    }
+    });
+    });
+</script>
+
+{% if error == "no" %}
+<script>
+    alert('Property detail has been added.');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong , Please Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'ownerNavbar.html' %}
+{% block main  %}
+{% load static %}
+
+
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">All About Real Estate</h1>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'ownerDashboard' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            About
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+
+<!-- ======= About Section ======= -->
+<section class="section-about">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 position-relative">
+                <div class="about-img-box">
+                    <img src="{% static 'assets/img/slide-1.jpg' %}" alt="" class="img-fluid">
+                </div>
+                <div class="sinse-box">
+                    <h3 class="sinse-title">EstateAgency
+                        <span></span>
+                        <br> Sinse 2017
+                    </h3>
+                    <p>Art & Creative</p>
+                </div>
+            </div>
+            <div class="col-md-12 section-t8 position-relative">
+                <div class="row">
+                    <div class="col-md-6 col-lg-5">
+                        <img src="{% static 'assets/img/feature.jpg' %}" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-lg-2  d-none d-lg-block position-relative">
+                        <div class="title-vertical d-flex justify-content-start">
+                            <span>Real Estate Exclusive Property</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-5 section-md-t3">
+                        <div class="title-box-d">
+                            <h3 class="title-d">Real
+                                <span class="color-d">Estate</span>
+                            </h3>
+                        </div>
+                        <p class="color-text-a">
+                            Real estate is property consisting of land and the buildings on it, along with its natural
+                            resources such as crops, minerals or water; immovable property of this nature; an interest
+                            vested in this an item of real property, buildings or housing in general.
+                        </p>
+                        <p class="color-text-a">
+                            Residential real estate may contain either a single family or multifamily structure that is
+                            available for occupation or for non-business purposes.
+                            Residences can be classified by and how they are connected to neighbouring residences and
+                            land. Different types of housing tenure can be used for the same physical type.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

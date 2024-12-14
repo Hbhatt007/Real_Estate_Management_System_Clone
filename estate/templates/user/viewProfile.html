@@ -1,0 +1,88 @@
+{% extends 'userNavbar.html' %}
+{% block main  %}
+{% load static %}
+<br><br>
+<!-- ======= Property Single ======= -->
+<section class="property-single nav-arrow-b">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row section-t3">
+                    <div class="col-sm-12">
+                        <div class="title-box-d">
+                            <h3 class="title-d">Your Profile</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="property-agent">
+                            <h4 class="title-agent">{{userType.user.first_name}} {{userType.user.last_name}}</h4>
+
+                            <ul class="list-unstyled">
+                                <li class="d-flex justify-content-between">
+                                    <strong>Email:</strong>
+                                    <span class="color-text-a">{{userType.user.username}}</span>
+                                </li>
+                                <li class="d-flex justify-content-between">
+                                    <strong>Type:</strong>
+                                    <span class="color-text-a">{{userType.type}}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-8">
+                        <div class="property-contact">
+                            <form class="form-a" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-12 mb-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-lg form-control-a"
+                                                   name="firstName" value="{{userType.user.first_name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12mb-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-lg form-control-a"
+                                                   name="lastName" value="{{userType.user.last_name}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-1">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-lg form-control-a"
+                                                   name="emailid" value="{{userType.user.username}}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-3">
+                                        <button type="submit" class="btn btn-a">Update</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Property Single-->
+
+{% if error ==  "no" %}
+<script>
+    alert('Profile has been Updated');
+    window.location=('{% url 'userDashboard' %}')
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something Went Wrong. Please try again');
+</script>
+{% endif %}
+
+{% endblock %}

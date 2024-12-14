@@ -1,0 +1,673 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Real Estate </title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <!-- Font Awesome CDN 6.1.1 Version -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ======= Header/Navbar ======= -->
+<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+    <div class="container">
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault"
+                aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a class="navbar-brand text-brand" href="index.html">Domicile Guidance<span class="color-b"></span></a>
+
+        <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'index' %}">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="/about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="/propertygrid">Properties</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="/contact">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="/login">Login</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link " href="/admin_login">Admin Login</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav><!-- End Header/Navbar -->
+
+<main id="main">
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">{{properties.propertytitle}}</h1>
+                        <span class="color-text-a">{{properties.address}}, {{properties.city.cityname}}, {{properties.city.state.statename}},{{properties.zipcode}}</span>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-4">
+                    <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'index' %}">Home</a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'propertygrid' %}">Properties</a>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Property Single ======= -->
+    <section class="property-single nav-arrow-b">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h3>Gallery</h3>
+                    <div id="property-single-carousel" class="swiper mt-3">
+                        <div class="swiper-wrapper">
+                            <div class="carousel-item-b swiper-slide">
+                                <img src="{{properties.featuredimage.url}}" style="width: 100%; height: 400px;" class="img-thumbnail">
+                            </div>
+                            <div class="carousel-item-b swiper-slide">
+                                <img src="{{properties.galleryimage1.url}}" style="width: 100%; height: 400px;" class="img-thumbnail">
+                            </div>
+                            <div class="carousel-item-b swiper-slide">
+                                <img src="{{properties.galleryimage2.url}}" style="width: 100%; height: 400px;" class="img-thumbnail">
+                            </div>
+                            <div class="carousel-item-b swiper-slide">
+                                <img src="{{properties.galleryimage3.url}}" style="width: 100%; height: 400px;" class="img-thumbnail">
+                            </div>
+                            <div class="carousel-item-b swiper-slide">
+                                <img src="{{properties.galleryimage4.url}}" style="width: 100%; height: 400px;" class="img-thumbnail">
+                            </div>
+                            <div class="carousel-item-b swiper-slide">
+                                <img src="{{properties.galleryimage5.url}}" style="width: 100%; height: 400px;" class="img-thumbnail">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="property-single-carousel-pagination carousel-pagination"></div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row justify-content-between">
+                        <div class="col-md-5 col-lg-4">
+
+                            <div class="property-summary">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="title-box-d section-t4">
+                                            <h3 class="title-d">Quick Summary</h3>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="summary-list">
+                                    <ul class="list">
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Property ID:</strong>
+                                            <span>{{properties.propertyid}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Location:</strong>
+                                            <span>{{properties.location}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Address:</strong>
+                                            <span>{{properties.address}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>State:</strong>
+                                            <span>{{properties.city.state.statename}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>City:</strong>
+                                            <span>{{properties.city.cityname}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Property Type:</strong>
+                                            <span>{{properties.type.typename}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Status:</strong>
+                                            <span>{{properties.status}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Area:</strong>
+                                            <span>{{properties.area}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Beds:</strong>
+                                            <span>{{properties.bedrooms}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Baths:</strong>
+                                            <span>{{properties.bathrooms}}</span>
+                                        </li>
+                                        <li class="d-flex justify-content-between">
+                                            <strong>Garage:</strong>
+                                            <span>{{properties.garages}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-7 col-lg-7 section-md-t3">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">Property Description</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-description">
+                                <p class="description color-text-a">
+                                    {{properties.propertydescription}}
+                                </p>
+                            </div>
+
+                            <div class="row section-t3">
+                                <div class="col-sm-12">
+                                    <div class="title-box-d">
+                                        <h3 class="title-d">Features</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="amenities-list color-text-a">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p>
+                                            {% if properties.centercooling == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Center Cooling</p>
+
+                                        <p>
+                                            {% if properties.balcony == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Balcony</p>
+
+                                        <p>
+                                            {% if properties.petfriendly == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Pet Friendly</p>
+
+                                        <p>
+                                            {% if properties.barbeque == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Barbeque</p>
+                                    </div>
+
+
+                                    <div class="col-sm-3">
+                                        <p>
+                                            {% if properties.firealarm == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Fire Alarm</p>
+
+                                        <p>
+                                            {% if properties.modernkitchen == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Modern Kitchen</p>
+
+                                        <p>
+                                            {% if properties.storage == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Storage</p>
+
+                                        <p>
+                                            {% if properties.dryer == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Dryer</p>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <p>
+                                            {% if properties.heating == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Heating</p>
+
+                                        <p>
+                                            {% if properties.pool == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Pool</p>
+
+                                        <p>
+                                            {% if properties.laundry == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Laundry</p>
+
+                                        <p>
+                                            {% if properties.gym == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Gym</p>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <p>
+                                            {% if properties.sauna == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Sauna</p>
+                                        <p>
+                                            {% if properties.elevator == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Elevator</p>
+
+                                        <p>
+                                            {% if properties.dishwasher == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} Dish Washer</p>
+
+                                        <p>
+                                            {% if properties.emergencyexit == 'yes' %}
+                                            <i class="fa-solid fa-check" style="color: green;"></i>
+                                            {% else %}
+                                            <i class="fa-solid fa-xmark" style="color: red;"></i>
+                                            {% endif %} EmergencyExit</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row section-t3">
+                        <div class="col-sm-12">
+                            <div class="title-box-d">
+                                <h3 class="title-d">Request A Showing</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="property-agent">
+                                <h4 class="title-agent">{{properties.user.user.first_name}}
+                                    {{properties.user.user.last_name}}</h4>
+                                <p class="color-text-a">
+                                    Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula
+                                    elementum sed sit amet
+                                    dui. Quisque velit nisi,
+                                    pretium ut lacinia in, elementum id enim.
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Email:</strong>
+                                        <span class="color-text-a">{{properties.user.user.username}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between">
+                                        <strong>Posted By:</strong>
+                                        <span class="color-text-a">{{properties.user.type}}</span>
+                                    </li>
+                                </ul>
+                                <div class="socials-a">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a href="#">
+                                                <i class="bi bi-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#">
+                                                <i class="bi bi-twitter" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#">
+                                                <i class="bi bi-instagram" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="#">
+                                                <i class="bi bi-linkedin" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4">
+                            <div class="property-contact">
+                                <h3>Send Request</h3>
+                                <form class="form-a" method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <input type="text" name="fullname"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       placeholder="Your Name *" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <input type="email" name="emailid"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       placeholder="Email Address *" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <input type="text" name="mobileno"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       placeholder="Phone Number *" maxlength="10" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-1">
+                                            <div class="form-group">
+                                                <textarea name="message" class="form-control" placeholder="Message *"
+                                                          cols="15" rows="5" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <button type="submit" class="btn btn-a">Send Request</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        {% if error == "no" %}
+                        <script>
+    alert('Your Enquiry Successfully Send. Your Enquiry number is {{enquiryno}}');
+
+                        </script>
+                        {% endif %}
+
+                        {% if error == "yes" %}
+                        <script>
+    alert('Something went wrong. Try Again...');
+
+                        </script>
+                        {% endif %}
+                        <div class="col-md-12 col-lg-4">
+                            <div class="property-contact">
+                                <h3>Mortage Calculator</h3>
+                                <form class="form-a" method="post">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2">
+                                            <div class="form-group">
+                                                <input type="text" name="saleprice" id="saleprice"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       placeholder="Sale Price(In Rs.)" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-2">
+                                            <div class="form-group">
+                                                <input type="text" name="downpayment" id="downpayment"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       placeholder="Down Payment(In Rs.)" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-2">
+                                            <div class="form-group">
+                                                <input type="text" name="term" id="term"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       placeholder="years" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12 mb-2">
+                                            <div class="form-group">
+                                                <input type="text" name="interestrate" id="interestrate"
+                                                       class="form-control form-control-lg form-control-a"
+                                                       placeholder="Interest Rate(%)" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <button type="submit" class="btn btn-a">Calculate</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Property Single-->
+
+    <!-- ======= Latest Properties Section ======= -->
+    <section class="section-property section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">Similar Properties</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {% for i in similarproperty %}
+                    <div class="col-md-4">
+                        <div class="card-box-a card-shadow">
+                            <div class="img-box-a">
+                                <img src="{{i.featuredimage.url}}" alt="" width="100%" height="400px">
+                            </div>
+                            <div class="card-overlay">
+                                <div class="card-overlay-a-content">
+                                    <div class="card-header-a">
+                                        <h2 class="card-title-a">
+                                            <a href="#">{{i.propertytitle}} ({{i.status}})</a>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body-a">
+                                        <div class="price-box d-flex">
+                                            <span class="price-a">rent | {{i.rentorsaleprice}}</span>
+                                        </div>
+                                        <a href="{% url 'propertysingle' i.id %}" class="link-a">Click here to view
+                                            <span class="bi bi-chevron-right"></span>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer-a">
+                                        <ul class="card-info d-flex justify-content-around">
+                                            <li>
+                                                <h4 class="card-info-title">Area</h4>
+                                                <span>{{i.area}} sq.ft</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Beds</h4>
+                                                <span>{{i.bedrooms}}</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Baths</h4>
+                                                <span>{{i.bathrooms}}</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Garages</h4>
+                                                <span>{{i.garages}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="propery-carousel-pagination carousel-pagination"></div>
+
+        </div>
+    </section><!-- End Latest Properties Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<section class="section-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="widget-a">
+                    <div class="w-header-a">
+                        <h3 class="w-title-a text-brand">Real Estate </h3>
+                    </div>
+                    <div class="w-body-a">
+                        <p class="w-text-a color-text-a">
+                            Real estate is property consisting of land and the buildings on it, along with its natural
+                            resources such as crops, minerals or water; immovable property of this nature; an interest
+                            vested in this an item of real property, buildings or housing in general.
+                        </p>
+                    </div>
+                    <div class="w-footer-a">
+                        <ul class="list-unstyled">
+                            <li class="color-a">
+                                <span class="color-text-a">Phone .</span> abc@gmail.com
+                            </li>
+                            <li class="color-a">
+                                <span class="color-text-a">Email .</span> +91 1234 5678 90
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 section-md-t3">
+                <div class="widget-a">
+                    <div class="w-header-a">
+                        <h3 class="w-title-a text-brand">The Company</h3>
+                    </div>
+                    <div class="w-body-a">
+                        <div class="w-body-a">
+                            <ul class="list-unstyled">
+                                <li class="item-list-a">
+                                    <i class="bi bi-chevron-right"></i> <a href="#">Site Map</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="bi bi-chevron-right"></i> <a href="#">Legal</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="bi bi-chevron-right"></i> <a href="#">Agent Admin</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="bi bi-chevron-right"></i> <a href="#">Careers</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="bi bi-chevron-right"></i> <a href="#">Affiliate</a>
+                                </li>
+                                <li class="item-list-a">
+                                    <i class="bi bi-chevron-right"></i> <a href="#">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright-footer">
+                    <p class="copyright color-text-a">
+                        <span class="color-a">&copy; Copyright Real Estate Management System All Rights Reserved. </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer><!-- End  Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>

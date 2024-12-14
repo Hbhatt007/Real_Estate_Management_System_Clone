@@ -1,0 +1,311 @@
+{% extends 'adminNavbar.html' %}
+{% block main  %}
+
+<div class="pagetitle">
+    <h1>View Property Details</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="breadcrumb-item active">Property List</li>
+            <li class="breadcrumb-item active">View Property Details</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-center">View Property Details</h5>
+
+                    <table border="1" class="table table-striped table-bordered first">
+                        <tr>
+                            <th>Full Name</th>
+                            <td style="padding-left: 10px">{{property.user.user.first_name}} {{property.user.user.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td style="padding-left: 10px">{{property.user.user.username}}</td>
+                        </tr>
+                        <tr>
+                            <th>Property Title</th>
+                            <td style="padding-left: 10px">{{property.propertytitle}}</td>
+                        </tr>
+                        <tr>
+                            <th>Property Description</th>
+                            <td style="padding-left: 10px">{{property.propertydescription}}</td>
+                        </tr>
+                        <tr>
+                            <th>Type</th>
+                            <td style="padding-left: 10px">{{property.type}}</td>
+                        </tr>
+                        <tr>
+                            <th>Status</th>
+                            <td style="padding-left: 10px">{{property.status}}</td>
+                        </tr>
+                        <tr>
+                            <th>Location</th>
+                            <td style="padding-left: 10px">{{property.location}}</td>
+                        </tr>
+                        <tr>
+                            <th>Bedrooms</th>
+                            <td style="padding-left: 10px">{{property.bedrooms}}</td>
+                        </tr>
+                        <tr>
+                            <th>Bathrooms</th>
+                            <td style="padding-left: 10px">{{property.bathrooms}}</td>
+                        </tr>
+                        <tr>
+                            <th>Floors</th>
+                            <td style="padding-left: 10px">{{property.floors}}</td>
+                        </tr>
+                        <tr>
+                            <th>Garages</th>
+                            <td style="padding-left: 10px">{{property.garages}}</td>
+                        </tr>
+                        <tr>
+                            <th>Area</th>
+                            <td style="padding-left: 10px">{{property.area}} sq. ft</td>
+                        </tr>
+                        <tr>
+                            <th>Rent/salePrice</th>
+                            <td style="padding-left: 10px">{{property.rentorsaleprice}}</td>
+                        </tr>
+                        <tr>
+                            <th>Before Price label</th>
+                            <td style="padding-left: 10px">{{property.beforepricelabel}}</td>
+                        </tr>
+                        <tr>
+                            <th>After Price label</th>
+                            <td style="padding-left: 10px">{{property.afterpricelabel}}</td>
+                        </tr>
+                        <tr>
+                            <th>PropertyID</th>
+                            <td style="padding-left: 10px">{{property.propertyid}}</td>
+                        </tr>
+
+                        <table border="1" class="table table-striped table-bordered first">
+                            <hr>
+                            <center><p style="color: blue">Property Features</p></center>
+                            <tr>
+                                <th>Center Cooling</th>
+                                {% if property.centercooling == "yes" %}
+                                <td><input type="checkbox" name="centercolling" id="centercolling" value="1"
+                                           checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="centercolling" id="centercolling"></td>
+                                {% endif %}
+
+                            </tr>
+
+                            <tr>
+                                <th>Balcony</th>
+                                {% if property.balcony == "yes" %}
+                                <td><input type="checkbox" name="balcony" id="balcony" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="balcony" id="balcony"></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Pet Friendly</th>
+                                {% if property.petfriendly == "yes" %}
+                                <td><input type="checkbox" name="petfriendly" id="petfriendly" value="1" checked="true">
+                                </td>
+                                {% else %}
+                                <td><input type="checkbox" name="petfrndly" id="petfrndly"></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Barbeque</th>
+                                {% if property.barbeque == "yes" %}
+                                <td><input type="checkbox" name="barbeque" id="barbeque" value="1" checked='true'></td>
+                                {% else %}
+                                <td><input type="checkbox" name="barbeque" id="barbeque"></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Fire Alarm</th>
+                                {% if property.firealarm == "yes" %}
+                                <td><input type="checkbox" name="firealarm" id="firealarm" value="1" checked="true">
+                                </td>
+                                {% else %}
+                                <td><input type="checkbox" name="firealarm" id="firealarm"></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Storage</th>
+                                {% if property.storage == "yes" %}
+                                <td><input type="checkbox" name="storage" id="storage" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="storage" id="storage"></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Dryer</th>
+                                {% if property.dryer == "yes" %}
+                                <td><input type="checkbox" name="dryer" id="dryer" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="dryer" id="dryer">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Heating</th>
+                                {% if property.heating == "yes" %}
+                                <td><input type="checkbox" name="heating" id="heating" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="heating" id="heating">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Pool</th>
+                                {% if property.pool == "yes" %}
+                                <td><input type="checkbox" name="pool" id="pool" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="Pool" id="Pool">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Laundry</th>
+                                {% if property.laundry == "yes" %}
+                                <td><input type="checkbox" name="laundry" id="laundry" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="Laundry" id="Laundry">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Sauna</th>
+                                {% if property.sauna == "yes" %}
+                                <td><input type="checkbox" name="sauna" id="sauna" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="sauna" id="sauna">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Gym</th>
+                                {% if property.gym == "yes" %}
+                                <td><input type="checkbox" name="gym" id="gym" value="1" checked="true"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="gym" id="gym">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Elevator</th>
+                                {% if property.elevator == "yes" %}
+                                <td><input type="checkbox" name="elevator" id="elevator" value="1" checked='true'></td>
+                                {% else %}
+                                <td><input type="checkbox" name="elevator" id="elevator">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Dish Washer</th>
+                                {% if property.dishwasher == "yes" %}
+                                <td><input type="checkbox" name="dishwasher" id="dishwasher" value="1" checked="true">
+                                </td>
+                                {% else %}
+                                <td><input type="checkbox" name="dishwasher" id="dishwasher">
+                                </td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <th>Emergency Exit</th>
+                                {% if property.emergencyexit == "yes" %}
+                                <td><input type="checkbox" name="emergencyexit" id="emergencyexit" value="1"></td>
+                                {% else %}
+                                <td><input type="checkbox" name="emergencyexit" id="emergencyexit">
+                                </td>
+                                {% endif %}
+                            </tr>
+                        </table>
+
+                        <table border="1" class="table table-striped table-bordered first">
+                            <hr>
+                            <center><p style="color: blue">Property Images</p></center>
+                            <tr>
+                                <th>Featured Image</th>
+                                <td style="padding-left: 10px"><img
+                                        src="{{property.featuredimage.url}}" width="200"
+                                        height="150" value="{{property.featuredimage.url}}"></td>
+                            </tr>
+                            <tr>
+                                <th>Gallery Image1</th>
+                                <td style="padding-left: 10px"><img
+                                        src="{{property.galleryimage1.url}}" width="200"
+                                        height="150" value="{{property.galleryimage1.url}}"></td>
+                            </tr>
+                            <tr>
+                                <th>Gallery Image2</th>
+                                <td style="padding-left: 10px"><img
+                                        src="{{property.galleryimage2.url}}" width="200"
+                                        height="150" value="{{property.galleryimage2.url}}"></td>
+                            </tr>
+                            <tr>
+                                <th>Gallery Image3</th>
+                                <td style="padding-left: 10px"><img
+                                        src="{{property.galleryimage3.url}}" width="200"
+                                        height="150" value="{{property.galleryimage3.url}}"></td>
+                            </tr>
+                            <tr>
+                                <th>Gallery Image4</th>
+                                <td style="padding-left: 10px"><img
+                                        src="{{property.galleryimage4.url}}" width="200"
+                                        height="150" value="{{property.galleryimage4.url}}"></td>
+                            </tr>
+                            <tr>
+                                <th>Gallery Image5</th>
+                                <td style="padding-left: 10px"><img
+                                        src="{{property.galleryimage5.url}}" width="200"
+                                        height="150" value="{{property.galleryimage5.url}}"></td>
+                            </tr>
+                        </table>
+
+                        <table border="1" class="table table-striped table-bordered first">
+                            <hr>
+                            <center><p style="color: blue">Property Address</p></center>
+                            <tr>
+                                <th>Address</th>
+                                <td style="padding-left: 10px">{{property.address}}</td>
+                            </tr>
+
+                            <tr>
+                                <th>State</th>
+                                <td style="padding-left: 10px">{{property.city.state.statename}}</td>
+                            </tr>
+
+
+                            <tr>
+                                <th>City</th>
+                                <td style="padding-left: 10px">{{property.city.cityname}}</td>
+                            </tr>
+
+
+                            <tr>
+                                <th>Zip Code</th>
+                                <td style="padding-left: 10px">{{property.zipcode}}</td>
+                            </tr>
+                            <tr>
+                                <th>Neighborhood</th>
+                                <td style="padding-left: 10px">{{property.neighborhood}}</td>
+                            </tr>
+                            <tr>
+                                <th>Listing Date</th>
+                                <td style="padding-left: 10px">{{property.listingdate}}</td>
+                            </tr>
+
+                        </table>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'ownerNavbar.html' %}
+{% block main  %}
+{% load static %}
+
+<!-- ======= Manage Property ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">View Enquiry</h1>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'ownerDashboard' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            My Account
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            View Enquiry Details
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+
+<section class="property-grid grid mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4 class="form--title">View Enquiry Details</h4>
+                <table border="1" class="table table-bordered mg-b-0">
+                    <tr>
+                        <th>Full Name</th>
+                        <td>{{enquiry.fullname}}</td>
+                    </tr>
+                    <tr>
+                        <th>Property Title</th>
+                        <td>{{enquiry.property.propertytitle}}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{enquiry.emailid}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>MobileNumber</th>
+                        <td>{{enquiry.mobileno}}</td>
+                    </tr>
+                    <tr>
+                        <th>Message</th>
+                        <td>{{enquiry.message}}</td>
+                    </tr>
+                    <tr>
+                        <th>Enquiry Date</th>
+                        <td>{{enquiry.enquirydate}}</td>
+                    </tr>
+
+                    <tr>
+                        {% if enquiry.status == None%}
+                        <th>Status</th>
+                        <td>UnAnswer Enquiry</td>
+                        {% else %}
+                        <th>Status</th>
+                        <td>Answered Enquiry</td>
+                        {% endif %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <table class="table mb-0">
+
+            {% if enquiry.status == None %}
+            <form class="mb-0" method="post" name="submit">
+                {% csrf_token %}
+                <tr>
+                    <th>Remark :</th>
+                    <td><textarea name="remark" rows="5" cols="10" class="form-control" required></textarea></td>
+                </tr>
+                <tr align="center">
+                    <td colspan="2">
+                        <button type="submit" name="submit" class="btn btn--primary">Update</button>
+                    </td>
+                </tr>
+            </form>
+            {% else %}
+            <tr>
+                <td colspan="2" style="text-align: center; color:blue"><strong>Broker / Owner Remark</strong></td>
+            </tr>
+            <tr>
+                <th>Remark</th>
+                <td>{{enquiry.remark}}</td>
+            </tr>
+            <tr>
+                <th>Remark date</th>
+                <td>{{enquiry.remarkdate}}</td>
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+</section>
+
+{% if error == "no" %}
+<script>
+    alert('All Remarks has been updated.');
+    window.location=('{% url 'ownerreceivedEnquiry' %}');
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong. Try Again...');
+</script>
+{% endif %}
+
+{% endblock %}

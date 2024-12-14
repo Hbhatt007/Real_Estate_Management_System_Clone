@@ -1,0 +1,51 @@
+{% extends 'adminNavbar.html' %}
+{% block main  %}
+{% load static %}
+<div class="pagetitle">
+    <h1>Owner List</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Home</a></li>
+            <li class="breadcrumb-item active">Owner List</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Owner List</h5>
+                    <table class="table table-bordered border-primary">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Registration Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in userType%}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+                            <td>{{i.user.username}}</td>
+                            <td>{{i.type}}</td>
+                            <td>{{i.postingdate}}</td>
+                            <td><a class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to Delete ?')" href="{% url 'deleteOwner' i.user.id %}">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+      </div>
+</section>
+{% endblock %}

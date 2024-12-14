@@ -1,0 +1,208 @@
+{% extends 'userNavbar.html' %}
+{% block main  %}
+{% load static %}
+<style>
+.container {
+  position: relative;
+  font-family: Arial;
+}
+
+.text-block {
+  position: absolute;
+  bottom: 70px;
+  background-color: #bf9f9f;
+  color: white;
+  padding-left: 15px;
+  padding-right: 50px;
+}
+
+/* Full-width input fields */
+select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+select:focus{
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+</style>
+<!-- ======= Intro Section ======= -->
+<div class="intro intro-carousel swiper position-relative">
+
+    <div class="swiper-wrapper">
+
+        <div class="swiper-slide carousel-item-a intro-item bg-image"
+             style="background-image: url(static/assets/img/slide-1.jpg)">
+        </div>
+        <div class="swiper-slide carousel-item-a intro-item bg-image"
+             style="background-image: url(static/assets/img/slide-2.jpg)">
+        </div>
+        <div class="swiper-slide carousel-item-a intro-item bg-image"
+             style="background-image: url(static/assets/img/slide-3.jpg)">
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+</div><!-- End Intro Section -->
+
+
+    <!-- ======= Intro Single ======= -->
+    <section class="intro-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-lg-8">
+                    <div class="title-single-box">
+                        <h1 class="title-single">Find Your Favorite Property</h1>
+                    </div>
+                </div>
+            </div>
+
+            <img src="{% static 'assets/img/dash.jpg'%}" width="100%" height="200px">
+            <div class="text-block">
+                <form class="mb-0" method="post" name="search">
+                    {% csrf_token %}
+                    <div class="form-box search-properties">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <div class="select--box">
+                                        <i class="fa fa-angle-down"></i>
+                                        <select name="city" id="city">
+                                            <option value="">Select City</option>
+                                            {% for i in citiesss %}
+                                            <option value="{{i.id}}">{{i.cityname}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .col-md-3 end -->
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <div class="select--box">
+                                        <i class="fa fa-angle-down"></i>
+                                        <select name="type" id="type" required>
+                                            <option value="">Property Type</option>
+                                            {% for i in propType %}
+                                            <option value="{{i.id}}">{{i.typename}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .col-md-3 end -->
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <div class="select--box">
+                                        <i class="fa fa-angle-down"></i>
+                                        <select name="status" id="status" required>
+                                            <option value="">Select Any Status</option>
+                                            {% for i in  propstatus %}
+                                            <option value="{{i.status}}">{{i.status}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3">
+                                <input type="submit" value="Search" name="search"
+                                       class="btn btn--primary btn--block">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section><!-- End Intro Single-->
+
+    <!-- ======= Latest Properties Section ======= -->
+    <section class="section-property section-t8">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-wrap d-flex justify-content-between">
+                        <div class="title-box">
+                            <h2 class="title-a">Latest Properties</h2>
+                        </div>
+                        <div class="title-link">
+                            <a href="property-grid.html">All Property
+                                <span class="bi bi-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {% for i in properties %}
+                    <div class="col-md-4">
+                        <div class="card-box-a card-shadow">
+                            <div class="img-box-a">
+                                <img src="{{i.featuredimage.url}}" alt="" width="100%" height="400px">
+                            </div>
+                            <div class="card-overlay">
+                                <div class="card-overlay-a-content">
+                                    <div class="card-header-a">
+                                        <h2 class="card-title-a">
+                                            <a href="#">{{i.propertytitle}}</a>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body-a">
+                                        <div class="price-box d-flex">
+                                            <span class="price-a">rent | {{i.rentorsaleprice}}</span>
+                                        </div>
+                                        <a href="{% url 'userpropertysingle' i.id %}" class="link-a">Click here to view
+                                            <span class="bi bi-chevron-right"></span>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer-a">
+                                        <ul class="card-info d-flex justify-content-around">
+                                            <li>
+                                                <h4 class="card-info-title">Area</h4>
+                                                <span>{{i.area}} sq.ft</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Beds</h4>
+                                                <span>{{i.bedrooms}}</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Baths</h4>
+                                                <span>{{i.bathrooms}}</span>
+                                            </li>
+                                            <li>
+                                                <h4 class="card-info-title">Garages</h4>
+                                                <span>{{i.garages}}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="propery-carousel-pagination carousel-pagination"></div>
+
+        </div>
+    </section><!-- End Latest Properties Section -->
+{% endblock %}

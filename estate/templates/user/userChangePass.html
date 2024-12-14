@@ -1,0 +1,108 @@
+{% extends 'userNavbar.html' %}
+{% block main  %}
+{% load static %}
+
+<!-- ======= Intro Single ======= -->
+<section class="intro-single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-8">
+                <div class="title-single-box">
+                    <h1 class="title-single">Change Password</h1>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'userDashboard' %}">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            My Account
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Change Password
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section><!-- End Intro Single-->
+
+<!-- ======= Contact Single ======= -->
+<section class="contact">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-12 section-t8">
+                <div class="row">
+                    <div class="col-md-7">
+                        <form  method="post" name="changepassword" onsubmit="return checkpassword()" class="php-email-form">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-group">
+                                        <input type="password" name="oldpassword"
+                                               class="form-control form-control-lg form-control-a"
+                                               placeholder="Enter Current Password" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-group">
+                                        <input type="password" name="newpassword"
+                                               class="form-control form-control-lg form-control-a"
+                                               placeholder="Enter New Password" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-group">
+                                        <input type="password" name="confirmpassword"
+                                               class="form-control form-control-lg form-control-a"
+                                               placeholder="Enter Confirm Password" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-a">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Contact Single-->
+
+<script>
+    function checkpassword(){
+    if(document.changepassword.newpassword.value!=document.changepassword.confirmpassword.value){
+    alert('New Password and Confirm Password field does not Match');
+    document.changepassword.confirmpassword.focus();
+    return false;
+    }
+    return true;
+    }
+</script>
+
+{% if error == "no" %}
+<script>
+    alert('Password updated successfully');
+    window.location=('{% url 'logout' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something went wrong , try again later');
+</script>
+{% endif %}
+
+{% if error == "not" %}
+<script>
+    alert('Your current password is wrong');
+</script>
+{% endif %}
+
+{% endblock %}
